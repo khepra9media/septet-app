@@ -4,10 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%236b1e1e'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-size='18' fill='%23D4A017'%3E✦%3C/text%3E%3C/svg%3E" type="image/svg+xml">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Septet">
 <meta name="theme-color" content="#6b1e1e">
-<link rel="manifest" href="manifest.json">
+<link rel="manifest" href="data:application/manifest+json;base64,eyJuYW1lIjogIlNlcHRldCBcdTIwMTQgS2VtZXRpYyBDYWxlbmRhciIsICJzaG9ydF9uYW1lIjogIlNlcHRldCIsICJpZCI6ICJzZXB0ZXQta2VtZXRpYy1jYWxlbmRhciIsICJkZXNjcmlwdGlvbiI6ICJLZW1ldGljIFNpZGVyZWFsIENhbGVuZGFyIGJ5IEtoZXByYTlNZWRpYS4gQmFzZWQgb24gdGhlIGhlbGlhY2FsIHJpc2luZyBvZiBTZXB0ZXQgKFNpcml1cykuIiwgInN0YXJ0X3VybCI6ICIvc2VwdGV0LyIsICJzY29wZSI6ICIvc2VwdGV0LyIsICJkaXNwbGF5IjogInN0YW5kYWxvbmUiLCAib3JpZW50YXRpb24iOiAicG9ydHJhaXQiLCAiYmFja2dyb3VuZF9jb2xvciI6ICIjMGExNjI4IiwgInRoZW1lX2NvbG9yIjogIiM2YjFlMWUiLCAibGFuZyI6ICJlbiIsICJkaXIiOiAibHRyIiwgImNhdGVnb3JpZXMiOiBbImxpZmVzdHlsZSIsICJlZHVjYXRpb24iLCAidXRpbGl0aWVzIl0sICJpY29ucyI6IFt7InNyYyI6ICIvc2VwdGV0L2ljb24tMTkyLnBuZyIsICJzaXplcyI6ICIxOTJ4MTkyIiwgInR5cGUiOiAiaW1hZ2UvcG5nIiwgInB1cnBvc2UiOiAiYW55IG1hc2thYmxlIn0sIHsic3JjIjogIi9zZXB0ZXQvaWNvbi01MTIucG5nIiwgInNpemVzIjogIjUxMng1MTIiLCAidHlwZSI6ICJpbWFnZS9wbmciLCAicHVycG9zZSI6ICJhbnkgbWFza2FibGUifV19">
+
 <meta name="description" content="Kemetic Sidereal Calendar by Khepra9Media. Based on the heliacal rising of Septet (Sirius).">
 <title>Septet — Kemetic Calendar</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Josefin+Slab:wght@300;400;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
@@ -308,7 +311,7 @@ self.addEventListener('fetch',function(e){
     try{
       const blob=new Blob([swCode],{type:'application/javascript'});
       const swUrl=URL.createObjectURL(blob);
-      navigator.serviceWorker.register(swUrl,{scope:'/'}).catch(function(){});
+      navigator.serviceWorker.register(swUrl,{scope:'/septet/'}).catch(function(){});
     }catch(e){}
   });
 }
@@ -647,16 +650,23 @@ function addAct(){
 
 // ── GATE RENDER ──────────────────────────────────────────────────
 function renderGate(){
-  return`<div class="gate">
+  return`<div class="app" style="min-height:100vh;display:flex;flex-direction:column;background:var(--navy)">
+  <div class="hdr" style="flex-shrink:0">
+    <div class="hl">
+      <button class="ib" onclick="S.showGate=false;render()" style="font-size:18px;padding:4px 10px;letter-spacing:0">←</button>
+      <div style="margin-left:6px"><div class="hm">Septet Annual Access</div><div class="hs">KHEPRA9MEDIA · SIDEREAL</div></div>
+    </div>
+  </div>
+  <div class="gate" style="flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch">
   <div class="gate-star">⭐</div>
   <div class="gate-title">Septet Annual Access</div>
   <div class="gate-sub">$4.99 per year · Cancel anytime</div>
   <div class="gate-feat">
     <div style="font-family:var(--f-s);font-size:11px;letter-spacing:2px;color:rgba(212,160,23,.5);margin-bottom:9px;text-align:center;text-transform:uppercase">Full access includes</div>
     <div class="gate-feat-row"><div class="gate-feat-ico">🌙</div><div class="gate-feat-txt"><b>Dream Log</b><br>Record dreams with Kemetic timestamps, mood tags, and full notes</div></div>
-    <div class="gate-feat-row"><div class="gate-feat-ico">✦</div><div class="gate-feat-txt"><b>Full Neteru Profiles</b><br>Complete biographies, sacred animals, Dekan Neteru for all 12 months</div></div>
-    <div class="gate-feat-row"><div class="gate-feat-ico">★</div><div class="gate-feat-txt"><b>Sacred Calendar</b><br>All 14 holy days with full observance instructions</div></div>
-    <div class="gate-feat-row"><div class="gate-feat-ico">◆</div><div class="gate-feat-txt"><b>Activity Tracker</b><br>Add personal rituals and notes to any day</div></div>
+    <div class="gate-feat-row"><div class="gate-feat-ico">🌟</div><div class="gate-feat-txt"><b>Full Neteru Profiles</b><br>Complete biographies, sacred animals, Dekan Neteru for all 12 months</div></div>
+    <div class="gate-feat-row"><div class="gate-feat-ico">📖</div><div class="gate-feat-txt"><b>Sacred Calendar</b><br>All 14 holy days with full observance instructions</div></div>
+    <div class="gate-feat-row"><div class="gate-feat-ico">📝</div><div class="gate-feat-txt"><b>Activity Tracker</b><br>Add personal rituals and notes to any day</div></div>
     <div class="gate-feat-row"><div class="gate-feat-ico">🔗</div><div class="gate-feat-txt"><b>Share Today's Date</b><br>Post your Kemetic date with Dekan day name and Neteru</div></div>
     <div class="gate-feat-row"><div class="gate-feat-ico">📅</div><div class="gate-feat-txt"><b>Year Overview</b><br>Full year navigation across all 12 months and years</div></div>
     <div class="gate-divider" style="margin-top:10px">
@@ -680,6 +690,7 @@ function renderGate(){
   </div>
   <button class="gate-skip" onclick="S.showGate=false;render()">Continue with Free Version</button>
   <div class="gate-legal">Subscription auto-renews at $4.99/year unless cancelled at least 24 hours before the renewal date. Manage or cancel in your Apple ID settings. Payment charged to Apple ID on confirmation.</div>
+  </div>
   </div>`;
 }
 
